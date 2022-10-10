@@ -10,7 +10,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.COLOR.background};
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    width: 100vw;
+
+    background-color: ${({ theme }) => theme.COLOR.BACKGROUND};
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -20,5 +26,13 @@ export const GlobalStyles = createGlobalStyle`
   button {
     border: none;
     cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    transition: 500ms;
+  
+    &:hover {
+      filter: brightness(90%);
+    }
   }
 `;

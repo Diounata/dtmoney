@@ -1,15 +1,15 @@
 export default {
   COLOR: {
-    background: '#f0f2f5',
-    container: '#ffffff',
+    BACKGROUND: '#f0f2f5',
+    CONTAINER: '#ffffff',
 
-    blue: '#5429cc',
-    green: '#33cc95',
-    lightBlue: '#6933ff',
-    red: '#e52e4d',
+    BLUE: '#5429cc',
+    GREEN: '#33cc95',
+    LIGHT_BLUE: '#6933ff',
+    RED: '#e52e4d',
 
-    title: '#363f5f',
-    text: '#969cb3',
+    TITLE: '#363f5f',
+    TEXT: '#969cb3',
   },
 
   FONT: {
