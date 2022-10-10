@@ -27,4 +27,25 @@ const Button = styled.button`
   color: #fff;
 `;
 
-export { Container, TitleContainer, Button };
+const CardsContainer = styled.section`
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+
+  padding: 0 1.5625rem;
+
+  position: relative;
+  top: -100px;
+
+  overflow: auto hidden;
+
+  > article {
+    flex: 0 0 auto;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export { Container, TitleContainer, Button, CardsContainer };

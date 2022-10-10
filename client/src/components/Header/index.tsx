@@ -1,6 +1,8 @@
-import { Container, TitleContainer, Button } from './styles';
+import { Container, TitleContainer, Button, CardsContainer } from './styles';
 
 import SVGLogo from '../../assets/logo.svg';
+
+import { Card } from '../Card';
 
 export function Header() {
   return (

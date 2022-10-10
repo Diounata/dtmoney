@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 
     font: ${({ theme }) => theme.FONT.REGULAR};
+    color: ${({ theme }) => theme.COLOR.TEXT};
   }
 
   body {
@@ -21,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     font: ${({ theme }) => theme.FONT.BOLD};
+    color: ${({ theme }) => theme.COLOR.TITLE};
   }
 
   button {
