@@ -8,23 +8,27 @@ import { Card } from './components/Card';
 import { MoneyListing } from './components/MoneyListing/';
 import { CreateTransactionModal } from './components/CreateTransactionModal';
 
+import { ModalProvider } from './contexts/ModalContext';
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
+      <ModalProvider>
+        <Header />
 
-      <CardsContainer>
-        <Card type="INCOME" />
-        <Card type="OUTCOME" />
-        <Card type="TOTAL" />
-      </CardsContainer>
+        <CardsContainer>
+          <Card type="INCOME" />
+          <Card type="OUTCOME" />
+          <Card type="TOTAL" />
+        </CardsContainer>
 
-      <main>
-        <MoneyListing />
-      </main>
+        <main>
+          <MoneyListing />
+        </main>
 
-      <CreateTransactionModal />
-      <GlobalStyles />
+        <CreateTransactionModal />
+        <GlobalStyles />
+      </ModalProvider>
     </ThemeProvider>
   );
 }

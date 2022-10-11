@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
 
-  position: absolute;
+  position: fixed;
   top: 0;
 
   background-color: rgba(0, 0, 0, 0.7);
@@ -16,7 +16,7 @@ const Modal = styled.div`
   gap: 1.5rem;
 
   width: 100%;
-  height: 27.875rem;
+  height: 28.875rem;
   padding: 1.5rem;
 
   position: absolute;
@@ -89,7 +89,7 @@ const Form = styled.form`
   }
 
   button {
-    margin-top: 1rem;
+    margin: 1rem 0;
     padding: 1.125rem 0;
 
     border-radius: 5px;
