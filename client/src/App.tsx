@@ -6,6 +6,7 @@ import { Header } from './components/Header';
 import { CardsContainer } from './components/Header/styles';
 import { Card } from './components/Card';
 import { MoneyListing } from './components/MoneyListing/';
+import { CreateTransactionModal } from './components/CreateTransactionModal';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <MoneyListing />
       </main>
 
+      <CreateTransactionModal />
       <GlobalStyles />
     </ThemeProvider>
   );
