@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Container = styled.header`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 
   height: 14.625rem;
   padding: 2rem 1.5rem;

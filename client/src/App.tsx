@@ -5,6 +5,7 @@ import { GlobalStyles } from './components/GlobalStyles';
 import { Header } from './components/Header';
 import { CardsContainer } from './components/Header/styles';
 import { Card } from './components/Card';
+import { MoneyListing } from './components/MoneyListing/';
 
 export default function App() {
   return (
@@ -16,6 +17,10 @@ export default function App() {
         <Card type="OUTCOME" />
         <Card type="TOTAL" />
       </CardsContainer>
+
+      <main>
+        <MoneyListing />
+      </main>
 
       <GlobalStyles />
     </ThemeProvider>

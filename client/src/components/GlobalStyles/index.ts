@@ -18,9 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     width: 100vw;
 
     background-color: ${({ theme }) => theme.COLOR.BACKGROUND};
+
+    main {
+      position: relative;
+      top: -80px;
+    }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  th, h1, h2, h3, h4, h5, h6 {
     font: ${({ theme }) => theme.FONT.BOLD};
     color: ${({ theme }) => theme.COLOR.TITLE};
   }
