@@ -24,6 +24,12 @@ const Modal = styled.div`
 
   border-radius: 16px 16px 0px 0px;
   background-color: #f0f2f5;
+
+  @media (orientation: landscape) {
+    height: 100%;
+
+    overflow-y: auto;
+  }
 `;
 
 const Header = styled.header`
