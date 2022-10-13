@@ -18,10 +18,34 @@ export const GlobalStyles = createGlobalStyle`
     width: 100vw;
 
     background-color: ${({ theme }) => theme.COLOR.BACKGROUND};
+    overflow-x: hidden;
 
     main {
       position: relative;
       top: -80px;
+    }
+
+    #root {
+      @media screen and (min-width: 1000px) {
+        > header, > section, main { 
+          padding-left: 1.5625rem;
+          padding-right: 1.5625rem;
+        }
+        
+      @media screen and (min-width: 1100px) {
+        > header, > section, main { 
+          padding-left: 10rem;
+          padding-right: 10rem;
+        }
+
+        main {
+          top: -10px;
+          
+          table {
+            padding: 0;
+          }
+        }
+      }
     }
   }
 
@@ -42,4 +66,4 @@ export const GlobalStyles = createGlobalStyle`
       filter: brightness(90%);
     }
   }
-`;
+}`;

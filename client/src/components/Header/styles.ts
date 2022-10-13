@@ -8,6 +8,10 @@ const Container = styled.header`
   padding: 2rem 1.5rem;
 
   background-color: ${({ theme }) => theme.COLOR.BLUE};
+
+  @media screen and (min-width: 1100px) {
+    height: 13.25rem;
+  }
 `;
 
 const TitleContainer = styled.section`
@@ -34,7 +38,7 @@ const CardsContainer = styled.section`
   padding: 0 1.5625rem;
 
   position: relative;
-  top: -100px;
+  top: -72px;
 
   overflow: auto hidden;
 
@@ -44,6 +48,29 @@ const CardsContainer = styled.section`
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  @media screen and (min-width: 980px) {
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 1100px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+
+    width: 100%;
+
+    > article {
+      gap: 0rem;
+
+      width: initial;
+      height: 9rem;
+
+      article {
+        margin-bottom: 0;
+      }
+    }
   }
 `;
 
