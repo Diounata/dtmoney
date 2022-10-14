@@ -16,7 +16,7 @@ const Container = styled.tr`
     font-size: 0.875rem;
   }
 
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 750px) {
     grid-template-areas: 'NAME PRICE CATEGORY DATE';
 
     padding: 1.25rem 2rem;

@@ -9,7 +9,7 @@ const Container = styled.header`
 
   background-color: ${({ theme }) => theme.COLOR.BLUE};
 
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 750px) {
     height: 13.25rem;
   }
 `;
@@ -38,7 +38,7 @@ const CardsContainer = styled.section`
   padding: 0 1.5625rem;
 
   position: relative;
-  top: -72px;
+  top: -100px;
 
   overflow: auto hidden;
 
@@ -50,16 +50,14 @@ const CardsContainer = styled.section`
     display: none;
   }
 
-  @media screen and (min-width: 980px) {
-    justify-content: center;
-  }
-
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 950px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
 
     width: 100%;
+
+    top: -72px;
 
     > article {
       gap: 0rem;

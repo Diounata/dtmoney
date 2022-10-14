@@ -32,14 +32,14 @@ export const GlobalStyles = createGlobalStyle`
           padding-right: 1.5625rem;
         }
         
-      @media screen and (min-width: 1100px) {
+      @media screen and (min-width: 750px) {
         > header, > section, main { 
           padding-left: 10rem;
           padding-right: 10rem;
         }
 
         main {
-          top: -10px;
+          top: -50px;
           
           table {
             padding: 0;

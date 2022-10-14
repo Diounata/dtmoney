@@ -12,7 +12,7 @@ export function MoneyListing() {
     <Table>
       <Thead>
         <tr>
-          {deviceWidth < 1100 ? (
+          {deviceWidth < 750 ? (
             <>
               <th>List</th>
               <th>4 items</th>

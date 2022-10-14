@@ -13,7 +13,7 @@ const Table = styled.table`
     gap: 0.5rem;
   }
 
-  @media screen and (min-width: 1100px) {
+  @media screen and (min-width: 750px) {
     gap: 0;
 
     thead tr {
@@ -44,7 +44,7 @@ const Thead = styled.thead`
       font: ${({ theme }) => theme.FONT.REGULAR};
       font-size: 1.25rem;
 
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 750px) {
         &:last-of-type {
           font: ${({ theme }) => theme.FONT.MEDIUM};
           font-size: 0.875rem;
