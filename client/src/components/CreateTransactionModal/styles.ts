@@ -110,6 +110,22 @@ const Form = styled.form`
       background-color: #ffffff;
       color: ${({ theme }) => theme.COLOR.TITLE};
       cursor: pointer;
+
+      transition: 300ms;
+
+      &:first-of-type {
+        &:hover,
+        &:active {
+          background-color: rgba(18, 164, 84, 0.1);
+        }
+      }
+
+      &:last-of-type {
+        &:hover,
+        &:active {
+          background-color: rgba(229, 46, 77, 0.1);
+        }
+      }
     }
 
     input {
