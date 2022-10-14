@@ -1,4 +1,4 @@
-import { Wrapper, Modal, Header, Form } from './styles';
+import { Wrapper, Modal, Header, Form, CreateTransactionButton } from './styles';
 
 import SVGClose from '../../assets/close.svg';
 import SVGIncome from '../../assets/income.svg';
@@ -52,9 +52,9 @@ export function CreateTransactionModal() {
               </section>
 
               <input type="text" name="category" placeholder="Category" />
-
-              <button>Create</button>
             </Form>
+
+            <CreateTransactionButton>Create</CreateTransactionButton>
           </Modal>
         </Wrapper>
       )}

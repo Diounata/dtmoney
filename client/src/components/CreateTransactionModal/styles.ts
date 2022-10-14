@@ -2,12 +2,17 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
 
   position: fixed;
   top: 0;
 
   background-color: rgba(0, 0, 0, 0.7);
+
+  @media screen and (min-width: 1100px) {
+    display: grid;
+    place-items: center;
+  }
 `;
 
 const Modal = styled.div`
@@ -18,6 +23,7 @@ const Modal = styled.div`
   width: 100%;
   height: 28.875rem;
   padding: 1.5rem;
+  padding-bottom: 2.5rem;
 
   position: absolute;
   bottom: 0;
@@ -25,10 +31,26 @@ const Modal = styled.div`
   border-radius: 16px 16px 0px 0px;
   background-color: #f0f2f5;
 
-  @media (orientation: landscape) {
+  @media screen and (orientation: landscape) and (max-width: 1100px) {
     height: 100%;
 
     overflow-y: auto;
+  }
+
+  @media screen and (min-width: 1100px) {
+    width: 36rem;
+    height: fit-content;
+    padding: 4rem 3rem;
+
+    bottom: initial;
+
+    border-radius: 5px;
+
+    header button {
+      position: absolute;
+      top: 21px;
+      right: 21px;
+    }
   }
 `;
 
@@ -87,21 +109,21 @@ const Form = styled.form`
       border-radius: 5px;
       background-color: #ffffff;
       color: ${({ theme }) => theme.COLOR.TITLE};
+      cursor: pointer;
     }
 
     input {
       display: none;
     }
   }
-
-  button {
-    margin: 1rem 0;
-    padding: 1.125rem 0;
-
-    border-radius: 5px;
-    background-color: #33cc95;
-    color: #ffffff;
-  }
 `;
 
-export { Wrapper, Modal, Header, Form };
+const CreateTransactionButton = styled.button`
+  padding: 1.125rem 0;
+
+  border-radius: 5px;
+  background-color: #33cc95;
+  color: #ffffff;
+`;
+
+export { Wrapper, Modal, Header, Form, CreateTransactionButton };
