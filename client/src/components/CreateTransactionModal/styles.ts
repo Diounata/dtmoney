@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { fadeIn, fadeOut, popIn, popOut } from './animations';
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -7,7 +9,14 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
 
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
+  user-select: none;
+
+  animation: ${fadeIn} 300ms forwards;
+
+  &.popout {
+    animation: ${fadeOut} 300ms forwards 150ms;
+  }
 
   @media screen and (min-width: 1100px) {
     display: grid;
@@ -27,9 +36,17 @@ const Modal = styled.div`
 
   position: absolute;
   bottom: 0;
+  z-index: 2;
 
   border-radius: 16px 16px 0px 0px;
   background-color: #f0f2f5;
+  visibility: hidden;
+
+  animation: ${popIn} 400ms forwards 300ms;
+
+  &.popout {
+    animation: ${popOut} 400ms forwards;
+  }
 
   @media screen and (orientation: landscape) and (max-width: 1100px) {
     height: 100%;
