@@ -1,11 +1,11 @@
-import { Container, Name, Value, Category, Date } from './styles';
+import { Container, Name, Price, Category, Date } from './styles';
 
 export function List() {
   return (
     <Container>
       <Name>Website development</Name>
 
-      <Value type="INCOME">$ 12.000,00</Value>
+      <Price type="INCOME">$ 12.000,00</Price>
 
       <Category>Sells</Category>
 

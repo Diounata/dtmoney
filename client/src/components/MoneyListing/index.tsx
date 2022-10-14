@@ -1,22 +1,38 @@
-import { Table, Thead, Tbody } from './styles';
+import { Table, Thead } from './styles';
+import { useState } from 'react';
 
 import { List } from '../List';
 
 export function MoneyListing() {
+  const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
+
+  window.addEventListener('resize', () => setDeviceWidth(window.innerWidth));
+
   return (
     <Table>
       <Thead>
         <tr>
-          <th>List</th>
-          <th>4 items</th>
+          {deviceWidth < 1100 ? (
+            <>
+              <th>List</th>
+              <th>4 items</th>
+            </>
+          ) : (
+            <>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Date</th>
+            </>
+          )}
         </tr>
       </Thead>
 
-      <Tbody>
+      <tbody>
         <List />
         <List />
         <List />
-      </Tbody>
+      </tbody>
     </Table>
   );
 }

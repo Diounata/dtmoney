@@ -22,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
 
     main {
       position: relative;
-      top: -80px;
+      top: -50px;
     }
 
     #root {

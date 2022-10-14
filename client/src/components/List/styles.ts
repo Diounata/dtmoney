@@ -4,7 +4,7 @@ const Container = styled.tr`
   display: grid;
   grid-template-areas:
     'NAME NAME'
-    'VALUE VALUE'
+    'PRICE PRICE'
     'CATEGORY DATE';
 
   padding: 1.125rem 1.5rem;
@@ -15,6 +15,18 @@ const Container = styled.tr`
   td {
     font-size: 0.875rem;
   }
+
+  @media screen and (min-width: 1100px) {
+    grid-template-areas: 'NAME PRICE CATEGORY DATE';
+
+    padding: 1.25rem 2rem;
+
+    td {
+      margin-bottom: 0;
+
+      font-size: 0.875rem !important;
+    }
+  }
 `;
 
 const Name = styled.td`
@@ -23,8 +35,8 @@ const Name = styled.td`
   color: ${({ theme }) => theme.COLOR.TITLE};
 `;
 
-const Value = styled.td<{ type: 'INCOME' | 'OUTCOME' }>`
-  grid-area: VALUE;
+const Price = styled.td<{ type: 'INCOME' | 'OUTCOME' }>`
+  grid-area: PRICE;
 
   margin-bottom: 1.1875rem;
 
@@ -42,4 +54,4 @@ const Date = styled.td`
   text-align: end;
 `;
 
-export { Container, Name, Value, Category, Date };
+export { Container, Name, Price, Category, Date };
