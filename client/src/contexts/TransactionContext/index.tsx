@@ -10,15 +10,15 @@ interface ChildrenProps {
 }
 
 interface Props {
-  transaction: StateProps;
+  transactionState: StateProps;
   dispatch: Dispatch<ActionProps>;
 }
 
 export function TransactionProvider({ children }: ChildrenProps) {
-  const [transaction, dispatch] = useReducer(reducer, initialState);
+  const [transactionState, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <TransactionContext.Provider value={{ transaction, dispatch }}>
+    <TransactionContext.Provider value={{ transactionState, dispatch }}>
       {children}
     </TransactionContext.Provider>
   );

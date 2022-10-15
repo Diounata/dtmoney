@@ -1,13 +1,15 @@
 import { StateProps, ActionProps } from './types';
 
-export const initialState: StateProps = {};
+export const initialState: StateProps = {
+  transactions: [],
+};
 
-export function reducer(state: StateProps, action: ActionProps) {
-  switch (action.type) {
+export function reducer(state: StateProps, { type, payload }: ActionProps): StateProps {
+  switch (type) {
     case 'ADD_TRANSACTION':
-      return state;
+      return { ...state, transactions: [payload.transaction, ...state.transactions] };
 
     default:
-      throw Error('You need to specify a dispatch action');
+      return state;
   }
 }

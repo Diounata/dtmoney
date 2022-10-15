@@ -35,13 +35,13 @@ const Name = styled.td`
   color: ${({ theme }) => theme.COLOR.TITLE};
 `;
 
-const Price = styled.td<{ type: 'INCOME' | 'OUTCOME' }>`
+const Price = styled.td<{ value: number }>`
   grid-area: PRICE;
 
   margin-bottom: 1.1875rem;
 
   font-size: 1.25rem !important;
-  color: ${({ type }) => (type === 'INCOME' ? '#12A454' : '#E52E4D')};
+  color: ${({ value }) => (value > 0 ? '#12A454' : '#E52E4D')};
 `;
 
 const Category = styled.td`

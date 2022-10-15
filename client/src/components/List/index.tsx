@@ -1,15 +1,26 @@
 import { Container, Name, Price, Category, Date } from './styles';
 
-export function List() {
+import { TransactionProps } from '../../contexts/TransactionContext/types';
+
+import { formatCurrency } from '../../utils/formatCurrency';
+import { formatDate } from '../../utils/formatDate';
+
+interface Props {
+  transaction: TransactionProps;
+}
+
+export function List({ transaction }: Props) {
+  const { title, price, category, date } = transaction;
+
   return (
     <Container>
-      <Name>Website development</Name>
+      <Name>{title}</Name>
 
-      <Price type="INCOME">$ 12.000,00</Price>
+      <Price value={price}>{formatCurrency(price)}</Price>
 
-      <Category>Sells</Category>
+      <Category>{category}</Category>
 
-      <Date>04/13/2021</Date>
+      <Date>{formatDate(date)}</Date>
     </Container>
   );
 }

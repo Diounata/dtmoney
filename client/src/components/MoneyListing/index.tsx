@@ -3,7 +3,13 @@ import { useState } from 'react';
 
 import { List } from '../List';
 
+import { useTransaction } from '../../contexts/TransactionContext';
+
 export function MoneyListing() {
+  const {
+    transactionState: { transactions },
+  } = useTransaction();
+
   const [deviceWidth, setDeviceWidth] = useState<number>(window.innerWidth);
 
   window.addEventListener('resize', () => setDeviceWidth(window.innerWidth));
@@ -29,9 +35,9 @@ export function MoneyListing() {
       </Thead>
 
       <tbody>
-        <List />
-        <List />
-        <List />
+        {transactions.map(transaction => (
+          <List key={transaction.id} transaction={transaction} />
+        ))}
       </tbody>
     </Table>
   );
