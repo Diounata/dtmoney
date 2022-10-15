@@ -1,6 +1,6 @@
-import theme from './theme';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './components/GlobalStyles';
+import theme from './theme';
 
 import { Header } from './components/Header';
 import { CardsContainer } from './components/Header/styles';
@@ -9,25 +9,28 @@ import { MoneyListing } from './components/MoneyListing/';
 import { CreateTransactionModal } from './components/CreateTransactionModal';
 
 import { ModalProvider } from './contexts/ModalContext';
+import { TransactionProvider } from './contexts/TransactionContext';
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <ModalProvider>
-        <Header />
+        <TransactionProvider>
+          <Header />
 
-        <CardsContainer>
-          <Card type="INCOME" />
-          <Card type="OUTCOME" />
-          <Card type="TOTAL" />
-        </CardsContainer>
+          <CardsContainer>
+            <Card type="INCOME" />
+            <Card type="OUTCOME" />
+            <Card type="TOTAL" />
+          </CardsContainer>
 
-        <main>
-          <MoneyListing />
-        </main>
+          <main>
+            <MoneyListing />
+          </main>
 
-        <CreateTransactionModal />
-        <GlobalStyles />
+          <CreateTransactionModal />
+          <GlobalStyles />
+        </TransactionProvider>
       </ModalProvider>
     </ThemeProvider>
   );
