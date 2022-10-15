@@ -1,4 +1,4 @@
-import { Table, Thead } from './styles';
+import { Table, Thead, EmptyTransactions } from './styles';
 import { useState } from 'react';
 
 import { List } from '../List';
@@ -15,30 +15,36 @@ export function MoneyListing() {
   window.addEventListener('resize', () => setDeviceWidth(window.innerWidth));
 
   return (
-    <Table>
-      <Thead>
-        <tr>
-          {deviceWidth < 750 ? (
-            <>
-              <th>List</th>
-              <th>4 items</th>
-            </>
-          ) : (
-            <>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Date</th>
-            </>
-          )}
-        </tr>
-      </Thead>
+    <>
+      {!transactions.length ? (
+        <EmptyTransactions>Opss... You haven't added transactions yet ;(</EmptyTransactions>
+      ) : (
+        <Table>
+          <Thead>
+            <tr>
+              {deviceWidth < 750 ? (
+                <>
+                  <th>List</th>
+                  <th>4 items</th>
+                </>
+              ) : (
+                <>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                </>
+              )}
+            </tr>
+          </Thead>
 
-      <tbody>
-        {transactions.map(transaction => (
-          <List key={transaction.id} transaction={transaction} />
-        ))}
-      </tbody>
-    </Table>
+          <tbody>
+            {transactions.map(transaction => (
+              <List key={transaction.id} transaction={transaction} />
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </>
   );
 }

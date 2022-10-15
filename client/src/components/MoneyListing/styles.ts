@@ -55,4 +55,10 @@ const Thead = styled.thead`
   }
 `;
 
-export { Table, Thead };
+const EmptyTransactions = styled.div`
+  padding: 0.5rem 1.5rem;
+
+  color: ${({ theme }) => theme.COLOR.TITLE};
+`;
+
+export { Table, Thead, EmptyTransactions };
