@@ -6,7 +6,7 @@ interface TransactionProps {
   id: string;
   title: string;
   price: number;
-  type: 'income' | 'expense' | '';
+  type: 'income' | 'outcome' | '';
   category: string;
   date: number;
 }

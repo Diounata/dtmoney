@@ -10,13 +10,15 @@ interface Props {
 }
 
 export function List({ transaction }: Props) {
-  const { title, price, category, date } = transaction;
+  const { title, price, type, category, date } = transaction;
 
   return (
     <Container>
       <Name>{title}</Name>
 
-      <Price value={price}>{formatCurrency(price)}</Price>
+      <Price type={type}>
+        {type === 'outcome' && '-'} {formatCurrency(price)}
+      </Price>
 
       <Category>{category}</Category>
 
