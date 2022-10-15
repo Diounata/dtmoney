@@ -1,76 +1,53 @@
 import { Wrapper, Modal, Header, Form, CreateTransactionButton } from './styles';
+import { logic } from './logic';
 
 import SVGClose from '../../assets/close.svg';
 import SVGIncome from '../../assets/income.svg';
 import SVGOutcome from '../../assets/outcome.svg';
 
-import { handleRadioButtonSelection } from './handleRadioButtonSelection';
-
 import { useModal } from '../../contexts/ModalContext';
 
 export function CreateTransactionModal() {
-  const { isOpen, toggleIsOpen } = useModal();
-
-  const wrapper = document.querySelector('.wrapper')!;
-  const modal = document.querySelector('.modal')!;
-
-  function closeModal() {
-    wrapper.classList.add('popout');
-    modal.classList.add('popout');
-
-    setTimeout(() => {
-      wrapper.classList.remove('popout');
-      modal.classList.remove('popout');
-
-      toggleIsOpen();
-    }, 700);
-  }
+  const { handleChange, handleAddition } = logic();
+  const { isOpen, closeModal } = useModal();
 
   return (
     <>
-      <Wrapper className="wrapper" style={{ display: isOpen ? 'grid' : 'none' }}>
-        <Modal className="modal">
-          <Header>
-            <h1>Create transaction</h1>
+      {isOpen && (
+        <Wrapper className="wrapper">
+          <Modal className="modal">
+            <Header>
+              <h1>Create transaction</h1>
 
-            <button onClick={closeModal}>
-              <img src={SVGClose} width="14px" alt="Close" />
-            </button>
-          </Header>
+              <button onClick={closeModal}>
+                <img src={SVGClose} width="14px" alt="Close" />
+              </button>
+            </Header>
 
-          <Form>
-            <input type="text" name="name" placeholder="Name" />
+            <Form>
+              <input type="text" name="title" placeholder="Name" onChange={handleChange} />
 
-            <input type="number" name="price" placeholder="Price" />
+              <input type="number" name="price" placeholder="Price" onChange={handleChange} />
 
-            <section>
-              <label>
-                <input
-                  type="radio"
-                  name="type"
-                  value="income"
-                  onChange={handleRadioButtonSelection}
-                />
-                <img src={SVGIncome} width="20px" alt="Income" /> Income
-              </label>
+              <section>
+                <label>
+                  <input type="radio" name="type" value="income" onChange={handleChange} />
+                  <img src={SVGIncome} width="20px" alt="Income" /> Income
+                </label>
 
-              <label>
-                <input
-                  type="radio"
-                  name="type"
-                  value="outcome"
-                  onChange={handleRadioButtonSelection}
-                />
-                <img src={SVGOutcome} width="20px" alt="Outcome" /> Outcome
-              </label>
-            </section>
+                <label>
+                  <input type="radio" name="type" value="outcome" onChange={handleChange} />
+                  <img src={SVGOutcome} width="20px" alt="Outcome" /> Outcome
+                </label>
+              </section>
 
-            <input type="text" name="category" placeholder="Category" />
-          </Form>
+              <input type="text" name="category" placeholder="Category" onChange={handleChange} />
+            </Form>
 
-          <CreateTransactionButton>Create</CreateTransactionButton>
-        </Modal>
-      </Wrapper>
+            <CreateTransactionButton onClick={handleAddition}>Create</CreateTransactionButton>
+          </Modal>
+        </Wrapper>
+      )}
     </>
   );
 }
