@@ -39,7 +39,6 @@ export function logic() {
 
   const handlePrice = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'e' || e.key === '-') e.preventDefault();
-    else handleChange(e);
   };
 
   const handleChange = useCallback((e: FormEvent<HTMLInputElement>) => {

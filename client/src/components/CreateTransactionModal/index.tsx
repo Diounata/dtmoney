@@ -33,6 +33,7 @@ export function CreateTransactionModal() {
                 min="0.01"
                 placeholder="Price"
                 onKeyDown={handlePrice}
+                onChange={handleChange}
               />
 
               <section>
