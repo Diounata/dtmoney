@@ -8,7 +8,7 @@ import SVGOutcome from '../../assets/outcome.svg';
 import { useModal } from '../../contexts/ModalContext';
 
 export function CreateTransactionModal() {
-  const { handleChange, handleAddition } = logic();
+  const { handleChange, handlePrice, handleAddition } = logic();
   const { isOpen, closeModal } = useModal();
 
   return (
@@ -27,7 +27,13 @@ export function CreateTransactionModal() {
             <Form>
               <input type="text" name="title" placeholder="Name" onChange={handleChange} />
 
-              <input type="number" name="price" placeholder="Price" onChange={handleChange} />
+              <input
+                type="number"
+                name="price"
+                min="0.01"
+                placeholder="Price"
+                onKeyDown={handlePrice}
+              />
 
               <section>
                 <label>

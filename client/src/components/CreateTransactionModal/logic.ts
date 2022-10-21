@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { FormEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import { useTransaction } from '../../contexts/TransactionContext';
@@ -6,7 +6,7 @@ import { TransactionProps } from '../../contexts/TransactionContext/types';
 import { useModal } from '../../contexts/ModalContext';
 
 const TRANSACTION_INITIAL_STATE: TransactionProps = {
-  id: uuid(),
+  id: '',
   title: '',
   price: 0,
   type: '',
@@ -37,6 +37,11 @@ export function logic() {
     });
   };
 
+  const handlePrice = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'e' || e.key === '-') e.preventDefault();
+    else handleChange(e);
+  };
+
   const handleChange = useCallback((e: FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
 
@@ -53,7 +58,7 @@ export function logic() {
     closeModal();
     dispatch({
       type: 'ADD_TRANSACTION',
-      payload: { transaction: { ...transaction, date: Date.now() } },
+      payload: { transaction: { ...transaction, id: uuid(), date: Date.now() } },
     });
   };
 
@@ -61,5 +66,5 @@ export function logic() {
     if (!isOpen) setTransaction(TRANSACTION_INITIAL_STATE);
   }, [isOpen]);
 
-  return { handleChange, handleAddition };
+  return { handleChange, handlePrice, handleAddition };
 }
