@@ -1,15 +1,15 @@
-import { Wrapper, Modal, Header, Form, CreateTransactionButton } from './styles';
-import { logic } from './logic';
+import { Wrapper, Modal, Header, Form, CreateTransactionButton } from './styles'
+import { logic } from './logic'
 
-import SVGClose from '../../assets/close.svg';
-import SVGIncome from '../../assets/income.svg';
-import SVGOutcome from '../../assets/outcome.svg';
+import SVGClose from '../../assets/close.svg'
+import SVGIncome from '../../assets/income.svg'
+import SVGOutcome from '../../assets/outcome.svg'
 
-import { useModal } from '../../contexts/ModalContext';
+import { useModal } from '../../contexts/ModalContext'
 
 export function CreateTransactionModal() {
-  const { handleChange, handlePrice, handleAddition } = logic();
-  const { isOpen, closeModal } = useModal();
+  const { handleChange, handlePrice, handleAddition } = logic()
+  const { isOpen, closeModal } = useModal()
 
   return (
     <>
@@ -56,5 +56,5 @@ export function CreateTransactionModal() {
         </Wrapper>
       )}
     </>
-  );
+  )
 }

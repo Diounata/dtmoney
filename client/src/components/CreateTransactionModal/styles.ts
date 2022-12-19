@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { fadeIn, fadeOut, popIn, popOut } from './animations';
+import { fadeIn, fadeOut, popIn, popOut } from './animations'
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     display: grid;
     place-items: center;
   }
-`;
+`
 
 const Modal = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ const Modal = styled.div`
       right: 21px;
     }
   }
-`;
+`
 
 const Header = styled.header`
   display: flex;
@@ -84,7 +84,7 @@ const Header = styled.header`
   button {
     background-color: inherit;
   }
-`;
+`
 
 const Form = styled.form`
   display: flex;
@@ -132,6 +132,7 @@ const Form = styled.form`
 
       &:first-of-type {
         &:hover,
+        &:focus,
         &:active {
           background-color: rgba(18, 164, 84, 0.1);
         }
@@ -139,6 +140,7 @@ const Form = styled.form`
 
       &:last-of-type {
         &:hover,
+        &:focus,
         &:active {
           background-color: rgba(229, 46, 77, 0.1);
         }
@@ -146,10 +148,11 @@ const Form = styled.form`
     }
 
     input {
-      display: none;
+      opacity: 0;
+      position: absolute;
     }
   }
-`;
+`
 
 const CreateTransactionButton = styled.button`
   padding: 1.125rem 0;
@@ -157,6 +160,6 @@ const CreateTransactionButton = styled.button`
   border-radius: 5px;
   background-color: #33cc95;
   color: #ffffff;
-`;
+`
 
-export { Wrapper, Modal, Header, Form, CreateTransactionButton };
+export { Wrapper, Modal, Header, Form, CreateTransactionButton }
