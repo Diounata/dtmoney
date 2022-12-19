@@ -92,20 +92,33 @@ const Form = styled.form`
   gap: 0.5rem;
 
   > input {
-    width: 100%;
-    padding: 1.125rem 1rem;
+    &:not(:last-of-type) {
+      width: 100%;
+      padding: 1.125rem 1rem;
 
-    border: 1px solid #d7d7d7;
-    border-radius: 5px;
-    background: #e7e9ee;
-    color: ${({ theme }) => theme.COLOR.TITLE};
+      border: 1px solid #d7d7d7;
+      border-radius: 5px;
+      background: #e7e9ee;
+      color: ${({ theme }) => theme.COLOR.TITLE};
 
-    transition: 500ms;
+      transition: 500ms;
 
-    &:focus,
-    &:hover {
-      outline: none;
-      border-color: ${({ theme }) => theme.COLOR.TITLE};
+      &:focus,
+      &:hover {
+        outline: none;
+        border-color: ${({ theme }) => theme.COLOR.TITLE};
+      }
+    }
+
+    &:last-of-type {
+      margin-top: 1.5rem;
+      padding: 1.125rem 0;
+      
+      border: none;
+      border-radius: 5px;
+      background-color: #33cc95;
+      color: #ffffff;
+      cursor: pointer;
     }
   }
 
@@ -154,12 +167,4 @@ const Form = styled.form`
   }
 `
 
-const CreateTransactionButton = styled.button`
-  padding: 1.125rem 0;
-
-  border-radius: 5px;
-  background-color: #33cc95;
-  color: #ffffff;
-`
-
-export { Wrapper, Modal, Header, Form, CreateTransactionButton }
+export { Wrapper, Modal, Header, Form }
