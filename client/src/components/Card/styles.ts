@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export interface ICard {
-  type: 'INCOME' | 'OUTCOME' | 'TOTAL';
+  type: 'income' | 'outcome' | 'total';
 }
 
 const Container = styled.article<ICard>`
@@ -14,10 +14,10 @@ const Container = styled.article<ICard>`
   padding: 1.5rem 1.125rem;
 
   border-radius: 5px;
-  background-color: ${({ theme, type }) => theme.COLOR[type === 'TOTAL' ? 'GREEN' : 'CONTAINER']};
+  background-color: ${({ theme, type }) => theme.COLOR[type === 'total' ? 'GREEN' : 'CONTAINER']};
 
   p {
-    color: ${({ theme, type }) => theme.COLOR[type === 'TOTAL' ? 'CONTAINER' : 'TITLE']} !important;
+    color: ${({ theme, type }) => theme.COLOR[type === 'total' ? 'CONTAINER' : 'TITLE']} !important;
   }
 `;
 

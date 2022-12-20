@@ -19,9 +19,9 @@ export default function App() {
           <Header />
 
           <CardsContainer>
-            <Card type="INCOME" />
-            <Card type="OUTCOME" />
-            <Card type="TOTAL" />
+            <Card type="income" />
+            <Card type="outcome" />
+            <Card type="total" />
           </CardsContainer>
 
           <main>

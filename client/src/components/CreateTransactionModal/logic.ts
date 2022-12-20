@@ -9,7 +9,7 @@ const TRANSACTION_INITIAL_STATE: TransactionProps = {
   id: '',
   title: '',
   price: 0,
-  type: '',
+  type: 'income',
   category: '',
   date: 0,
 }
@@ -28,8 +28,7 @@ export function logic() {
 
       if (btn.checked) {
         label.style.borderColor = 'transparent'
-        label.style.backgroundColor =
-          btn.value === 'income' ? 'rgba(18, 164, 84, 0.1)' : 'rgba(229, 46, 77, 0.1)'
+        label.style.backgroundColor = btn.value === 'income' ? 'rgba(18, 164, 84, 0.1)' : 'rgba(229, 46, 77, 0.1)'
       } else {
         label.style.borderColor = '#969CB2'
         label.style.backgroundColor = 'inherit'
@@ -50,16 +49,16 @@ export function logic() {
   }, [])
 
   const handleAddition = (e: FormEvent<HTMLFormElement>) => {
-    const { title, price, type, category } = transaction
+    const { title, price, category } = transaction
 
     e.preventDefault()
 
-    if (!title || !price || !type || !category) return
+    if (!title || !price || !category) return
 
     closeModal()
     dispatch({
       type: 'ADD_TRANSACTION',
-      payload: { transaction: { ...transaction, id: uuid(), date: Date.now() } },
+      payload: { transaction: { ...transaction, price: +price, id: uuid(), date: Date.now() } },
     })
   }
 

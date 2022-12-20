@@ -1,16 +1,16 @@
-import { Container, Name, Price, Category, Date } from './styles';
+import { Container, Name, Price, Category, Date } from './styles'
+import { format } from 'date-fns'
 
-import { TransactionProps } from '../../contexts/TransactionContext/types';
+import { TransactionProps } from '../../contexts/TransactionContext/types'
 
-import { formatCurrency } from '../../utils/formatCurrency';
-import { formatDate } from '../../utils/formatDate';
+import { formatCurrency } from '../../utils/formatCurrency'
 
 interface Props {
-  transaction: TransactionProps;
+  transaction: TransactionProps
 }
 
 export function List({ transaction }: Props) {
-  const { title, price, type, category, date } = transaction;
+  const { title, price, type, category, date } = transaction
 
   return (
     <Container>
@@ -22,7 +22,7 @@ export function List({ transaction }: Props) {
 
       <Category>{category}</Category>
 
-      <Date>{formatDate(date)}</Date>
+      <Date>{format(date, 'MM/dd/yyyy')}</Date>
     </Container>
-  );
+  )
 }

@@ -1,17 +1,26 @@
-import { ICard, Container, HeaderContainer, BalanceContainer } from './styles';
+import { ICard, Container, HeaderContainer, BalanceContainer } from './styles'
+import { formatDistanceToNow } from 'date-fns'
 
-import SVGIncome from '../../assets/income.svg';
-import SVGOutcome from '../../assets/outcome.svg';
-import SVGTotal from '../../assets/total.svg';
+import SVGIncome from '../../assets/income.svg'
+import SVGOutcome from '../../assets/outcome.svg'
+import SVGTotal from '../../assets/total.svg'
 
-import { capitalize } from '../../utils/capitalizeText';
+import { capitalize } from '../../utils/capitalizeText'
+import { formatCurrency } from '../../utils/formatCurrency'
+
+import { useTransaction } from '../../contexts/TransactionContext'
 
 export function Card({ type }: ICard) {
+  const { transactionState: { transactionCards } } = useTransaction()
+
+  const { value, lastAddition } = transactionCards[type]
+  const formatDistanceDate = (date: number) => formatDistanceToNow(new Date(date), { addSuffix: true })
+
   const cardTypeSVG = {
-    INCOME: SVGIncome,
-    OUTCOME: SVGOutcome,
-    TOTAL: SVGTotal,
-  };
+    income: SVGIncome,
+    outcome: SVGOutcome,
+    total: SVGTotal,
+  }
 
   return (
     <Container type={type}>
@@ -22,10 +31,10 @@ export function Card({ type }: ICard) {
       </HeaderContainer>
 
       <BalanceContainer>
-        <p>$ 17.400,00</p>
+        <p>{formatCurrency(value)}</p>
 
-        <p>Last addition April 13th</p>
+        <p>{lastAddition ? `Last addition ${formatDistanceDate(lastAddition)}` : ''}</p>
       </BalanceContainer>
     </Container>
-  );
+  )
 }
