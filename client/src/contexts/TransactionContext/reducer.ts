@@ -19,8 +19,6 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
       transactionCards[type].value = transactionCards[type].value + price
       transactionCards[type].lastAddition = date
 
-    console.log(transactionCards.income.value, transactionCards.outcome.value)
-
       transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
       transactionCards.total.lastAddition = date
 
