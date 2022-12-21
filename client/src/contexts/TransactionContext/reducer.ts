@@ -1,4 +1,4 @@
-import { StateProps, ActionProps } from './types'
+import { StateProps, ActionProps, TransactionProps, TransactionCardsProps, } from './types'
 
 export const initialState: StateProps = {
   transactions: [],
@@ -10,22 +10,29 @@ export const initialState: StateProps = {
 }
 
 export function reducer(state: StateProps, { type, payload }: ActionProps): StateProps {
+  function updateTransactionCards(transactionCards: TransactionCardsProps, transaction: TransactionProps, oldTransaction?: TransactionProps) {
+    const lastAdditionDate = oldTransaction ? state.transactions[0].date : transaction.date
+
+    if (oldTransaction) {
+      transactionCards[transaction.type].value -= oldTransaction.price
+      transactionCards.total.value -= oldTransaction.price  
+    }
+    
+    transactionCards[transaction.type].value += transaction.price
+    transactionCards[transaction.type].lastAddition = lastAdditionDate
+
+    transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
+    transactionCards.total.lastAddition = lastAdditionDate
+
+    return transactionCards
+  }
+
   switch (type) {
     case 'ADD_TRANSACTION':
-      const { transaction } = payload
-      const { transactionCards } = state
-      const { price, date, type } = transaction
-
-      transactionCards[type].value = transactionCards[type].value + price
-      transactionCards[type].lastAddition = date
-
-      transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
-      transactionCards.total.lastAddition = date
-
       return {
         ...state,
-        transactions: [transaction, ...state.transactions],
-        transactionCards,
+        transactions: [payload.transaction, ...state.transactions],
+        transactionCards: updateTransactionCards(state.transactionCards, payload.transaction),
       }
 
     default:

@@ -25,4 +25,4 @@ interface TransactionCardsProps {
 
 type ActionProps = { type: 'ADD_TRANSACTION'; payload: { transaction: TransactionProps } }
 
-export type { StateProps, ActionProps, TransactionProps }
+export type { StateProps, ActionProps, TransactionProps, TransactionCardsProps }
