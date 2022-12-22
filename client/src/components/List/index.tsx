@@ -29,11 +29,11 @@ export function List({ transaction }: Props) {
 
       <Actions>
         <button>
-          <img src={TrashSVG} alt="Delete" />
+          <img src={TrashSVG} alt="Delete" title="Delete" />
         </button>
 
         <button>
-          <img src={PenSVG} alt="Edit" />
+          <img src={PenSVG} alt="Edit" title="Edit" />
         </button>
       </Actions>
     </Container>

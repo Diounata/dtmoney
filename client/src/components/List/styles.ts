@@ -26,7 +26,7 @@ const Container = styled.tr`
     td {
       margin-bottom: 0;
 
-      font-size: 0.875rem !important;
+      font-size: 1rem !important;
     }
   }
 `
@@ -53,14 +53,14 @@ const Category = styled.td`
 const Date = styled.td`
   grid-area: DATE;
 
-  text-align: end;
+  @media screen and (max-width: 750px) {
+    text-align: end;
+  }
 `
 
 const Actions = styled.td`
   grid-area: ACTIONS;
   text-align: end;
-
-  margin-top: 0.5rem;
 
   button {
     display: inline-flex;
@@ -76,9 +76,18 @@ const Actions = styled.td`
     :first-of-type {
       margin-right: 0.5rem;
       border: 2px solid #e74c3c;
+
+      :hover, :focus {
+        background-color: rgba(231, 76, 60, 0.2);
+      }
     }
+
     :last-of-type {
       border: 2px solid #3498db;
+
+      :hover, :focus {
+        background-color: rgb(52, 152, 219, 0.2);
+      }
     }
   }
 `

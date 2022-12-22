@@ -29,7 +29,7 @@ const Table = styled.table`
     }
 
     tr {
-      grid-template-columns: 1fr 0.45fr 0.5fr 4.6875rem auto;
+      grid-template-columns: 1fr 0.45fr 0.5fr 0.3fr 4.5rem;
     }
   }
 `;
