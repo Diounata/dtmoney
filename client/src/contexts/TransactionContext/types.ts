@@ -23,6 +23,9 @@ interface TransactionCardsProps {
   total: TransactionCardProps
 }
 
-type ActionProps = { type: 'ADD_TRANSACTION'; payload: { transaction: TransactionProps } }
+type ADD_TRANSACTION = { type: 'ADD_TRANSACTION'; payload: { transaction: TransactionProps } }
+type DELETE_TRANSACTION = { type: 'DELETE_TRANSACTION'; payload: { transaction: TransactionProps } }
+
+type ActionProps = ADD_TRANSACTION | DELETE_TRANSACTION
 
 export type { StateProps, ActionProps, TransactionProps, TransactionCardsProps }

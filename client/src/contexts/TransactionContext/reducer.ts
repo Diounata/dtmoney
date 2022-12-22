@@ -1,4 +1,5 @@
-import { StateProps, ActionProps, TransactionProps, TransactionCardsProps, } from './types'
+import { StateProps, ActionProps, TransactionProps } from './types'
+import { updateTransactionCards } from './updateTransactionCards'
 
 export const initialState: StateProps = {
   transactions: [],
@@ -10,29 +11,35 @@ export const initialState: StateProps = {
 }
 
 export function reducer(state: StateProps, { type, payload }: ActionProps): StateProps {
-  function updateTransactionCards(transactionCards: TransactionCardsProps, transaction: TransactionProps, oldTransaction?: TransactionProps) {
-    const lastAdditionDate = oldTransaction ? state.transactions[0].date : transaction.date
+  const { transactionCards } = state
 
-    if (oldTransaction) {
-      transactionCards[transaction.type].value -= oldTransaction.price
-      transactionCards.total.value -= oldTransaction.price  
-    }
-    
-    transactionCards[transaction.type].value += transaction.price
-    transactionCards[transaction.type].lastAddition = lastAdditionDate
-
-    transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
-    transactionCards.total.lastAddition = lastAdditionDate
-
-    return transactionCards
-  }
+  let transactions: TransactionProps[]
 
   switch (type) {
     case 'ADD_TRANSACTION':
+      transactions = [payload.transaction, ...state.transactions]
+
       return {
         ...state,
-        transactions: [payload.transaction, ...state.transactions],
-        transactionCards: updateTransactionCards(state.transactionCards, payload.transaction),
+        transactions,
+        transactionCards: updateTransactionCards({
+          transaction: payload.transaction,
+          transactionCards,
+          transactions,
+        }),
+      }
+
+    case 'DELETE_TRANSACTION':
+      transactions = state.transactions.filter(transaction => transaction.id !== payload.transaction.id)
+
+      return {
+        ...state,
+        transactions,
+        transactionCards: updateTransactionCards({
+          oldTransaction: payload.transaction,
+          transactionCards,
+          transactions,
+        }),
       }
 
     default:
