@@ -33,6 +33,7 @@ export function MoneyListing() {
                   <th>Price</th>
                   <th>Category</th>
                   <th>Date</th>
+                  <th>Actions</th>
                 </>
               )}
             </tr>

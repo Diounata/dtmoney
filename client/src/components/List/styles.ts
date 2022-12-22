@@ -1,9 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Container = styled.tr`
   display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
   grid-template-areas:
-    'NAME NAME'
+    'NAME ACTIONS'
     'PRICE PRICE'
     'CATEGORY DATE';
 
@@ -17,7 +19,7 @@ const Container = styled.tr`
   }
 
   @media screen and (min-width: 750px) {
-    grid-template-areas: 'NAME PRICE CATEGORY DATE';
+    grid-template-areas: 'NAME PRICE CATEGORY DATE ACTIONS';
 
     padding: 1.25rem 2rem;
 
@@ -27,13 +29,13 @@ const Container = styled.tr`
       font-size: 0.875rem !important;
     }
   }
-`;
+`
 
 const Name = styled.td`
   grid-area: NAME;
 
   color: ${({ theme }) => theme.COLOR.TITLE};
-`;
+`
 
 const Price = styled.td<{ type: 'income' | 'outcome' | '' }>`
   grid-area: PRICE;
@@ -42,16 +44,43 @@ const Price = styled.td<{ type: 'income' | 'outcome' | '' }>`
 
   font-size: 1.25rem !important;
   color: ${({ type }) => (type === 'income' ? '#12A454' : '#E52E4D')};
-`;
+`
 
 const Category = styled.td`
   grid-area: CATEGORY;
-`;
+`
 
 const Date = styled.td`
   grid-area: DATE;
 
   text-align: end;
-`;
+`
 
-export { Container, Name, Price, Category, Date };
+const Actions = styled.td`
+  grid-area: ACTIONS;
+  text-align: end;
+
+  margin-top: 0.5rem;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    background-color: inherit;
+    border-radius: 8px;
+
+    :first-of-type {
+      margin-right: 0.5rem;
+      border: 2px solid #e74c3c;
+    }
+    :last-of-type {
+      border: 2px solid #3498db;
+    }
+  }
+`
+
+export { Container, Name, Price, Category, Date, Actions }
