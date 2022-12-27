@@ -11,7 +11,7 @@ import { useTransaction } from '../../contexts/TransactionContext'
 export function CreateTransactionModal() {
   const { handleChange, handlePrice, handleSubmit } = logic()
   const { isOpen, closeModal } = useModal()
-  const { editingTransactionId } = useTransaction()
+  const { editingTransactionId, setEditingTransactionId } = useTransaction()
 
   return (
     <>
@@ -21,7 +21,7 @@ export function CreateTransactionModal() {
             <Header>
               <h1>{editingTransactionId ? 'Edit' : 'Create'} transaction</h1>
 
-              <button onClick={closeModal}>
+              <button onClick={() => closeModal(setEditingTransactionId)}>
                 <img src={SVGClose} width="14px" alt="Close" />
               </button>
             </Header>

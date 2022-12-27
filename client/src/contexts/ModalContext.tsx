@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, Dispatch, ReactNode, useContext, useState } from 'react'
 
 const ModalContext = createContext({} as Props)
 
@@ -9,7 +9,7 @@ interface IChildren {
 interface Props {
   isOpen: boolean
   toggleIsOpen(): void
-  closeModal(): void
+  closeModal(setEditingTransactionId: Dispatch<React.SetStateAction<string>>): void
 }
 
 export function ModalProvider({ children }: IChildren) {
@@ -21,12 +21,14 @@ export function ModalProvider({ children }: IChildren) {
     setIsOpen(prev => !prev)
   }
 
-  function closeModal() {
+  function closeModal(setEditingTransactionId: Dispatch<React.SetStateAction<string>>) {
     const wrapper = document.querySelector('.wrapper')!
     const modal = document.querySelector('.modal')!
 
     wrapper.classList.add('popout')
     modal.classList.add('popout')
+
+    setEditingTransactionId('')
 
     setTimeout(() => {
       wrapper.classList.remove('popout')
