@@ -13,6 +13,11 @@ export function CreateTransactionModal() {
   const { isOpen, closeModal } = useModal()
   const { editingTransactionId, setEditingTransactionId } = useTransaction()
 
+  const close = () => {
+    closeModal()
+    setEditingTransactionId('')
+  }
+
   return (
     <>
       {isOpen && (
@@ -21,7 +26,7 @@ export function CreateTransactionModal() {
             <Header>
               <h1>{editingTransactionId ? 'Edit' : 'Create'} transaction</h1>
 
-              <button onClick={() => closeModal(setEditingTransactionId)}>
+              <button onClick={close}>
                 <img src={SVGClose} width="14px" alt="Close" />
               </button>
             </Header>

@@ -9,7 +9,7 @@ interface IChildren {
 interface Props {
   isOpen: boolean
   toggleIsOpen(): void
-  closeModal(setEditingTransactionId: Dispatch<React.SetStateAction<string>>): void
+  closeModal(): void
 }
 
 export function ModalProvider({ children }: IChildren) {
@@ -21,14 +21,12 @@ export function ModalProvider({ children }: IChildren) {
     setIsOpen(prev => !prev)
   }
 
-  function closeModal(setEditingTransactionId: Dispatch<React.SetStateAction<string>>) {
+  function closeModal() {
     const wrapper = document.querySelector('.wrapper')!
     const modal = document.querySelector('.modal')!
 
     wrapper.classList.add('popout')
     modal.classList.add('popout')
-
-    setEditingTransactionId('')
 
     setTimeout(() => {
       wrapper.classList.remove('popout')
