@@ -1,48 +1,48 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react'
 
-const ModalContext = createContext({} as Props);
+const ModalContext = createContext({} as Props)
 
 interface IChildren {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface Props {
-  isOpen: boolean;
-  toggleIsOpen(): void;
-  closeModal(): void;
+  isOpen: boolean
+  toggleIsOpen(): void
+  closeModal(): void
 }
 
 export function ModalProvider({ children }: IChildren) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   function toggleIsOpen(): void {
-    document.body.style.overflow = !isOpen ? 'hidden' : 'auto';
+    document.body.style.overflow = !isOpen ? 'hidden' : 'auto'
 
-    setIsOpen(prev => !prev);
+    setIsOpen(prev => !prev)
   }
 
   function closeModal() {
-    const wrapper = document.querySelector('.wrapper')!;
-    const modal = document.querySelector('.modal')!;
+    const wrapper = document.querySelector('.wrapper')!
+    const modal = document.querySelector('.modal')!
 
-    wrapper.classList.add('popout');
-    modal.classList.add('popout');
+    wrapper.classList.add('popout')
+    modal.classList.add('popout')
 
     setTimeout(() => {
-      wrapper.classList.remove('popout');
-      modal.classList.remove('popout');
+      wrapper.classList.remove('popout')
+      modal.classList.remove('popout')
 
-      toggleIsOpen();
-    }, 700);
+      toggleIsOpen()
+    }, 700)
   }
 
   return (
     <ModalContext.Provider value={{ isOpen, toggleIsOpen, closeModal }}>
       {children}
     </ModalContext.Provider>
-  );
+  )
 }
 
 export function useModal() {
-  return useContext(ModalContext);
+  return useContext(ModalContext)
 }

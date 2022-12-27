@@ -15,20 +15,22 @@ const TRANSACTION_INITIAL_STATE: TransactionProps = {
 }
 
 export function logic() {
-  const { dispatch } = useTransaction()
+  const { transactionState, dispatch, editingTransactionId, setEditingTransactionId } =
+    useTransaction()
   const { isOpen, closeModal } = useModal()
 
   const [transaction, setTransaction] = useState<TransactionProps>(TRANSACTION_INITIAL_STATE)
 
-  const handleRadioButtonSelection = () => {
+  const updateRadioButtonSelectionStyle = () => {
     const radioButtons = document.getElementsByName('type') as NodeListOf<HTMLInputElement>
 
-    radioButtons.forEach(btn => {
-      const label = btn.closest('label')!
+    radioButtons.forEach(rb => {
+      const label = rb.closest('label')!
 
-      if (btn.checked) {
+      if (rb.checked) {
         label.style.borderColor = 'transparent'
-        label.style.backgroundColor = btn.value === 'income' ? 'rgba(18, 164, 84, 0.1)' : 'rgba(229, 46, 77, 0.1)'
+        label.style.backgroundColor =
+          rb.value === 'income' ? 'rgba(18, 164, 84, 0.1)' : 'rgba(229, 46, 77, 0.1)'
       } else {
         label.style.borderColor = '#969CB2'
         label.style.backgroundColor = 'inherit'
@@ -43,28 +45,57 @@ export function logic() {
   const handleChange = useCallback((e: FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget
 
-    if (target.type === 'radio') handleRadioButtonSelection()
+    if (target.type === 'radio') updateRadioButtonSelectionStyle()
 
     setTransaction(prev => ({ ...prev, [target.name]: target.value }))
   }, [])
 
-  const handleAddition = (e: FormEvent<HTMLFormElement>) => {
-    const { title, price, category } = transaction
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    let { id, date, price } = transaction
+
+    id = id || uuid()
+    date = date || Date.now()
 
     e.preventDefault()
-
-    if (!title || !price || !category) return
-
     closeModal()
     dispatch({
-      type: 'ADD_TRANSACTION',
-      payload: { transaction: { ...transaction, price: +price, id: uuid(), date: Date.now() } },
+      type: editingTransactionId ? 'EDIT_TRANSACTION' : 'ADD_TRANSACTION',
+      payload: { transaction: { ...transaction, id, date, price: +price } },
     })
+
+    if (editingTransactionId) setEditingTransactionId('')
+  }
+
+  const updateDOMInputsValues = (transaction: TransactionProps) => {
+    type InputProps = HTMLInputElement & {
+      name: keyof TransactionProps
+    } & Omit<HTMLElement, 'name'>
+
+    const inputs = document.querySelectorAll('input') as NodeListOf<InputProps>
+
+    inputs.forEach(input => {
+      const transactionValue = String(transaction[input.name])
+
+      if (input.type !== 'submit') {
+        if (input.type === 'radio' && input.value === transactionValue) input.checked = true
+        else input.value = transactionValue.toString()
+      }
+    })
+
+    updateRadioButtonSelectionStyle()
   }
 
   useEffect(() => {
-    if (!isOpen) setTransaction(TRANSACTION_INITIAL_STATE)
+    let selectedTransaction: TransactionProps | undefined
+
+    if (editingTransactionId) {
+      selectedTransaction = transactionState.transactions.find(item => item.id === editingTransactionId)
+
+      updateDOMInputsValues(selectedTransaction!)
+    }
+
+    setTransaction(selectedTransaction ?? TRANSACTION_INITIAL_STATE)
   }, [isOpen])
 
-  return { handleChange, handlePrice, handleAddition }
+  return { handleChange, handlePrice, handleSubmit }
 }

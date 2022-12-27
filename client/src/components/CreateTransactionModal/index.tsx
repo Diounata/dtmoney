@@ -6,10 +6,12 @@ import SVGIncome from '../../assets/income.svg'
 import SVGOutcome from '../../assets/outcome.svg'
 
 import { useModal } from '../../contexts/ModalContext'
+import { useTransaction } from '../../contexts/TransactionContext'
 
 export function CreateTransactionModal() {
-  const { handleChange, handlePrice, handleAddition } = logic()
+  const { handleChange, handlePrice, handleSubmit } = logic()
   const { isOpen, closeModal } = useModal()
+  const { editingTransactionId } = useTransaction()
 
   return (
     <>
@@ -17,14 +19,14 @@ export function CreateTransactionModal() {
         <Wrapper className="wrapper">
           <Modal className="modal">
             <Header>
-              <h1>Create transaction</h1>
+              <h1>{editingTransactionId ? 'Edit' : 'Create'} transaction</h1>
 
               <button onClick={closeModal}>
                 <img src={SVGClose} width="14px" alt="Close" />
               </button>
             </Header>
 
-            <Form onSubmit={handleAddition}>
+            <Form onSubmit={handleSubmit}>
               <input type="text" name="title" placeholder="Name" onChange={handleChange} required />
 
               <input
@@ -64,7 +66,7 @@ export function CreateTransactionModal() {
                 required
               />
 
-              <input type="submit" value="Create" />
+              <input type="submit" value={editingTransactionId ? 'Edit' : 'Create'} />
             </Form>
           </Modal>
         </Wrapper>

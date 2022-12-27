@@ -30,6 +30,24 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
         transactionCards,
       }
 
+    case 'EDIT_TRANSACTION':
+      const oldTransaction = state.transactions.find(transaction => transaction.id === payload.transaction.id)!
+
+      transactions = state.transactions.map(transaction =>transaction.id !== payload.transaction.id ? transaction : payload.transaction)
+
+      transactionCards = updateTransactionCards({
+        oldTransaction: oldTransaction,
+        transaction: payload.transaction,
+        transactionCards,
+        transactions,
+      })
+
+      return {
+        ...state,
+        transactions,
+        transactionCards,
+      }
+
     case 'DELETE_TRANSACTION':
       transactions = state.transactions.filter(transaction => transaction.id !== payload.transaction.id)
 
