@@ -69,6 +69,8 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
         transactions,
       })
 
+      API.delete('/transactions', { data: payload.transaction })
+
       return {
         ...state,
         transactions,
