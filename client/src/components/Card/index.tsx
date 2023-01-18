@@ -7,6 +7,7 @@ import SVGTotal from '../../assets/total.svg'
 
 import { capitalize } from '../../utils/capitalizeText'
 import { formatCurrency } from '../../utils/formatCurrency'
+import { TransactionLoading } from '../TransactionLoading'
 
 import { useTransaction } from '../../contexts/TransactionContext'
 
@@ -31,7 +32,7 @@ export function Card({ type }: ICard) {
       </HeaderContainer>
 
       <BalanceContainer>
-        <p>{formatCurrency(value)}</p>
+        <TransactionLoading><p>{formatCurrency(value)}</p></TransactionLoading>
 
         <p>{lastAddition ? `Last addition ${formatDistanceDate(lastAddition)}` : ''}</p>
       </BalanceContainer>

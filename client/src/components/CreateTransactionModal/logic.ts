@@ -7,7 +7,7 @@ import { useModal } from '../../contexts/ModalContext'
 import { DOMManipulation } from './domManipulation'
 
 const TRANSACTION_INITIAL_STATE: TransactionProps = {
-  id: '',
+  _id: '',
   title: '',
   price: 0,
   type: 'income',
@@ -35,16 +35,16 @@ export function logic() {
   }, [])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    let { id, date, price } = transaction
+    let { _id, date, price } = transaction
 
-    id = id || uuid()
+    _id = _id || uuid()
     date = date || Date.now()
 
     e.preventDefault()
     closeModal()
     dispatch({
       type: editingTransactionId ? 'EDIT_TRANSACTION' : 'ADD_TRANSACTION',
-      payload: { transaction: { ...transaction, id, date, price: +price } },
+      payload: { transaction: { ...transaction, _id, date, price: +price } },
     })
 
     if (editingTransactionId) setEditingTransactionId('')
@@ -54,7 +54,7 @@ export function logic() {
     let selectedTransaction: TransactionProps | undefined
 
     if (editingTransactionId) {
-      selectedTransaction = transactionState.transactions.find(item => item.id === editingTransactionId)
+      selectedTransaction = transactionState.transactions.find(item => item._id === editingTransactionId)
 
       updateDOMInputsValues(selectedTransaction!)
     }

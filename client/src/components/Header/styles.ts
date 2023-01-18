@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Container = styled.header`
   display: flex;
@@ -12,13 +12,13 @@ const Container = styled.header`
   @media screen and (min-width: 750px) {
     height: 13.25rem;
   }
-`;
+`
 
 const TitleContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 const Button = styled.button`
   padding: 0.6875rem 1rem;
@@ -28,7 +28,14 @@ const Button = styled.button`
   font: ${({ theme }) => theme.FONT.BOLD};
   font-size: 0.75rem;
   color: #fff;
-`;
+
+  :disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    font: ${({ theme }) => theme.FONT.REGULAR};
+  }
+`
 
 const CardsContainer = styled.section`
   display: flex;
@@ -70,6 +77,6 @@ const CardsContainer = styled.section`
       }
     }
   }
-`;
+`
 
-export { Container, TitleContainer, Button, CardsContainer };
+export { Container, TitleContainer, Button, CardsContainer }

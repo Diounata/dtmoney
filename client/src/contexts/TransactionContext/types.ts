@@ -4,7 +4,7 @@ interface StateProps {
 }
 
 interface TransactionProps {
-  id: string
+  _id: string
   title: string
   price: number
   type: 'income' | 'outcome'
@@ -23,6 +23,11 @@ interface TransactionCardsProps {
   total: TransactionCardProps
 }
 
+type ADD_BACKEND_TRANSACTIONS = {
+  type: 'ADD_BACKEND_TRANSACTIONS'
+  payload: { transactions: TransactionProps[] }
+}
+
 type ADD_TRANSACTION = {
   type: 'ADD_TRANSACTION'
   payload: { transaction: TransactionProps }
@@ -38,6 +43,6 @@ type DELETE_TRANSACTION = {
   payload: { transaction: TransactionProps }
 }
 
-type ActionProps = ADD_TRANSACTION | EDIT_TRANSACTION | DELETE_TRANSACTION
+type ActionProps = ADD_BACKEND_TRANSACTIONS | ADD_TRANSACTION | EDIT_TRANSACTION | DELETE_TRANSACTION
 
 export type { StateProps, ActionProps, TransactionProps, TransactionCardsProps }

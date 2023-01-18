@@ -8,9 +8,7 @@ interface UpdateTransactionCardsProps {
 }
 
 function findLastAdditionDate(transactions: TransactionProps[], type?: 'income' | 'outcome') {
-  return type
-    ? transactions.find(transaction => transaction.type === type)?.date ?? 0
-    : transactions[0]?.date ?? 0
+  return type ? transactions.find(transaction => transaction.type === type)?.date ?? 0 : transactions[0]?.date ?? 0
 }
 
 export function updateTransactionCards({
@@ -26,7 +24,6 @@ export function updateTransactionCards({
     transactionCards.total.value -= type === 'income' ? price : price * -1
 
     transactionCards[type].lastAddition = findLastAdditionDate(transactions, type)
-    transactionCards.total.lastAddition = findLastAdditionDate(transactions)
   }
 
   if (transaction) {
@@ -36,8 +33,20 @@ export function updateTransactionCards({
     transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
 
     transactionCards[type].lastAddition = findLastAdditionDate(transactions, type)
-    transactionCards.total.lastAddition = findLastAdditionDate(transactions)
   }
+
+  if (transactions && !transaction) {
+    for (let transaction of transactions) {
+      transactionCards[transaction.type].value += transaction.price
+    }
+
+    transactionCards.total.value = transactionCards.income.value - transactionCards.outcome.value
+    
+    transactionCards.income.lastAddition = findLastAdditionDate(transactions, 'income')
+    transactionCards.outcome.lastAddition = findLastAdditionDate(transactions, 'outcome')
+  }
+
+  transactionCards.total.lastAddition = findLastAdditionDate(transactions)
 
   return transactionCards
 }

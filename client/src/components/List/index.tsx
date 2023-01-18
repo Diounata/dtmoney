@@ -22,7 +22,7 @@ export function List({ transaction }: Props) {
   const deleteTransaction = () => dispatch({ type: 'DELETE_TRANSACTION', payload: { transaction } })
 
   const editTransaction = () => {
-    setEditingTransactionId(transaction.id)
+    setEditingTransactionId(transaction._id)
     toggleIsOpen()
   }
 

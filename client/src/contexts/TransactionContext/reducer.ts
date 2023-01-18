@@ -15,6 +15,12 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
   let transactionCards: TransactionCardsProps = state.transactionCards
 
   switch (type) {
+    case 'ADD_BACKEND_TRANSACTIONS':
+      transactions = payload.transactions
+      transactionCards = updateTransactionCards({ transactions, transactionCards })
+
+      return { ...state, transactions, transactionCards }
+
     case 'ADD_TRANSACTION':
       transactions = [payload.transaction, ...transactions]
 
@@ -31,9 +37,11 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
       }
 
     case 'EDIT_TRANSACTION':
-      const oldTransaction = state.transactions.find(transaction => transaction.id === payload.transaction.id)!
+      const oldTransaction = state.transactions.find(transaction => transaction._id === payload.transaction._id)!
 
-      transactions = state.transactions.map(transaction =>transaction.id !== payload.transaction.id ? transaction : payload.transaction)
+      transactions = state.transactions.map(transaction =>
+        transaction._id !== payload.transaction._id ? transaction : payload.transaction
+      )
 
       transactionCards = updateTransactionCards({
         oldTransaction: oldTransaction,
@@ -49,7 +57,7 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
       }
 
     case 'DELETE_TRANSACTION':
-      transactions = state.transactions.filter(transaction => transaction.id !== payload.transaction.id)
+      transactions = state.transactions.filter(transaction => transaction._id !== payload.transaction._id)
 
       transactionCards = updateTransactionCards({
         oldTransaction: payload.transaction,
