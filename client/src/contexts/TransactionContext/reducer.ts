@@ -1,6 +1,8 @@
 import { StateProps, ActionProps, TransactionProps, TransactionCardsProps } from './types'
 import { updateTransactionCards } from './updateTransactionCards'
 
+import { API } from '../../utils/axios'
+
 export const initialState: StateProps = {
   transactions: [],
   transactionCards: {
@@ -29,6 +31,8 @@ export function reducer(state: StateProps, { type, payload }: ActionProps): Stat
         transactionCards,
         transactions,
       })
+
+      API.post('/transactions', payload.transaction)
 
       return {
         ...state,
